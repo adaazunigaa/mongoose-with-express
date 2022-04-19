@@ -22,7 +22,22 @@ app.set("view engine", "ejs");
 
 app.get("/", (req, res)=>{
     res.send("<h1>main</h1>")
+});
+
+app.get("/products", async (req,res)=>{
+    const products = await Product.find({});
+    res.render("products/index.ejs", {products});
+});
+
+app.get("/products/:id", async (req,res)=>{
+    const {id} = req.params;
+    const product = await Product.findById(id);
+    console.log(product);
+    res.render("products/show.ejs", { product })
 })
+
+
+
 
 
 
