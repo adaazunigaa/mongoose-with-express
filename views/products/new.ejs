@@ -19,13 +19,15 @@
 
         <label for="category">Select category</label>
         <select name="category" id="category">
-            <option value="fruit">Fruit</option>
-            <option value="vegetable">Vegetable</option>
-            <option value="dairy">Dairy</option>
+            <% for(let category of categories){ %>
+                <option value="<%= category %>"><%= category %> </option>
+                <% } %>  
         </select>
         <br>
 
         <button>Submit</button>
     </form>
+
+    <a href="/products">Back to all products</a>
 </body>
 </html>

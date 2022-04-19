@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride("_method"));
 
-
+const categories = ["fruit", "vegetable", "dairy"]
 
 app.get("/", (req, res)=>{
     res.send("<h1>main</h1>")
@@ -32,7 +32,7 @@ app.get("/products", async (req,res)=>{
 });
 
 app.get("/products/new", (req,res)=>{
-    res.render("products/new.ejs");
+    res.render("products/new.ejs", {categories});
 });
 
 app.post("/products", async (req,res) =>{
@@ -53,7 +53,7 @@ app.get("/products/:id", async (req,res)=>{
 app.get("/products/:id/edit", async (req,res)=>{
     const {id} = req.params;
     const product = await Product.findById(id);
-    res.render("products/edit.ejs", {product});
+    res.render("products/edit.ejs", {product, categories});
 });
 
 app.put("/products/:id", async(req,res)=>{
